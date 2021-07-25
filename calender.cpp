@@ -130,26 +130,26 @@ string toShort(string firstDay)
     return firstDay;
 }
 
-void toCheckLeap(calender *&toProduce, int year)
+void toCheckLeap(calender **toProduce, int year)
 {
     if (year % 4 == 0 && year % 100 != 0)
     {
-        toProduce[1].leapCheck = true;
+        toProduce[1][0].leapCheck = true;
     }
     else if (year % 4 == 0 && year % 100 == 0)
     {
         if (year % 400 == 0)
         {
-            toProduce[1].leapCheck = true;
+            toProduce[1][0].leapCheck = true;
         }
         else
         {
-            toProduce[1].leapCheck = false;
+            toProduce[1][0].leapCheck = false;
         }
     }
     else
     {
-        toProduce[1].leapCheck = false;
+        toProduce[1][0].leapCheck = false;
     }
 }
 
@@ -185,38 +185,53 @@ string nextMonth(int newMonthDate)
     }
 }
 
-void miniDigitalCalender(calender *&toProduce, string firstDay)
+void miniDigitalCalender(calender **toProduce, string firstDay)
 {
     string lastDay;
     int dayCheck;
 
     for (int x = 0; x < 12; ++x)
     {
-        cout << "-----------" << toProduce[x].month[x] << "-----------" << endl;
+        cout << "-----------" << toProduce[x][0].month[x] << "-----------" << endl;
         for (int y = 0; y < 7; ++y)
         {
-            cout << toProduce[x].day[y] << " ";
+            cout << toProduce[x][0].day[y] << " ";
         }
         cout << endl;
         for (int z = 0; z < 7; ++z)
         {
-            if (toProduce[x].day[z] == firstDay)
+            if (toProduce[x][0].day[z] == firstDay)
             {
                 dayCheck = z;
                 break;
             }
             cout << "    ";
         }
-        int newMonthDay = toProduce[x].inputDate(toProduce[x].month[x], dayCheck);
+        int newMonthDay = toProduce[x][0].inputDate(toProduce[x][0].month[x], dayCheck);
         firstDay = nextMonth(newMonthDay);
     }
 }
 
+void freeUpMemory(calender **toProduce)
+{
+    for (int m = 0; m < 12; ++m)
+    {
+        delete[] toProduce[m];
+    }
+    delete[] toProduce;
+    toProduce = nullptr;
+}
+
 int main()
 {
-    calender *toProduce = new calender[12];
+    calender **toProduce = new calender *[12];
     int year;
     string firstDay;
+
+    for (int m = 0; m < 12; ++m)
+    {
+        toProduce[m] = new calender[1];
+    }
 
     cout << "Year: ";
     cin >> year;
@@ -228,7 +243,7 @@ int main()
     toCheckLeap(toProduce, year);
     miniDigitalCalender(toProduce, firstDay);
 
-    delete[] toProduce;
+    freeUpMemory(toProduce);
 
     return 0;
 }
