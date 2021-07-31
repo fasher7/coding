@@ -1,31 +1,41 @@
 #include <iostream>
+#include <list>
+#include <iterator>
 using namespace std;
+
+struct options
+{
+    string remTitle;
+    string remDescrip;
+    int theDate;
+    string theMonth;
+};
 
 struct calender
 {
     string month[12] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "Octobar", "November", "December"};
     string day[7] = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
-    string theMonth;
     bool leapCheck;
 
     int inputDate(string givenMonth, int dayCheck)
     {
+        int date[31];
+        for (int i = 0; i < 31; ++i)
+        {
+            date[i] = i + 1;
+        }
         if (givenMonth == "January" || givenMonth == "March" || givenMonth == "May" || givenMonth == "July" || givenMonth == "August" || givenMonth == "Octobar" || givenMonth == "December")
         {
-            int date1[31];
+
             for (int i = 0; i < 31; ++i)
             {
-                date1[i] = i + 1;
-            }
-            for (int i = 0; i < 31; ++i)
-            {
-                if (date1[i] <= 9)
+                if (date[i] <= 9)
                 {
-                    cout << " " << date1[i] << "  ";
+                    cout << " " << date[i] << "  ";
                 }
-                else if (date1[i] > 9)
+                else if (date[i] > 9)
                 {
-                    cout << date1[i] << "  ";
+                    cout << date[i] << "  ";
                 }
                 ++dayCheck;
                 if (dayCheck == 7)
@@ -37,21 +47,15 @@ struct calender
         }
         else if (givenMonth == "April" || givenMonth == "June" || givenMonth == "September" || givenMonth == "November")
         {
-
-            int date2[30];
             for (int i = 0; i < 30; ++i)
             {
-                date2[i] = i + 1;
-            }
-            for (int i = 0; i < 30; ++i)
-            {
-                if (date2[i] <= 9)
+                if (date[i] <= 9)
                 {
-                    cout << " " << date2[i] << "  ";
+                    cout << " " << date[i] << "  ";
                 }
-                else if (date2[i] > 9)
+                else if (date[i] > 9)
                 {
-                    cout << date2[i] << "  ";
+                    cout << date[i] << "  ";
                 }
                 ++dayCheck;
                 if (dayCheck == 7)
@@ -65,20 +69,16 @@ struct calender
         {
             if (leapCheck == true)
             {
-                int date3[29];
+
                 for (int i = 0; i < 29; ++i)
                 {
-                    date3[i] = i + 1;
-                }
-                for (int i = 0; i < 29; ++i)
-                {
-                    if (date3[i] <= 9)
+                    if (date[i] <= 9)
                     {
-                        cout << " " << date3[i] << "  ";
+                        cout << " " << date[i] << "  ";
                     }
-                    else if (date3[i] > 9)
+                    else if (date[i] > 9)
                     {
-                        cout << date3[i] << "  ";
+                        cout << date[i] << "  ";
                     }
                     ++dayCheck;
                     if (dayCheck == 7)
@@ -90,20 +90,15 @@ struct calender
             }
             else
             {
-                int date4[28];
                 for (int i = 0; i < 28; ++i)
                 {
-                    date4[i] = i + 1;
-                }
-                for (int i = 0; i < 28; ++i)
-                {
-                    if (date4[i] <= 9)
+                    if (date[i] <= 9)
                     {
-                        cout << " " << date4[i] << "  ";
+                        cout << " " << date[i] << "  ";
                     }
-                    else if (date4[i] > 9)
+                    else if (date[i] > 9)
                     {
-                        cout << date4[i] << "  ";
+                        cout << date[i] << "  ";
                     }
                     ++dayCheck;
                     if (dayCheck == 7)
@@ -212,6 +207,81 @@ void miniDigitalCalender(calender **toProduce, string firstDay)
     }
 }
 
+void addRem(list<options> task, options changes)
+{
+}
+
+void updRem(list<options> task, options changes)
+{
+    if (task.size() == 0)
+    {
+        cout << "Please add a reminder first!" << endl;
+        return;
+    }
+}
+
+void delRem(list<options> task, options changes)
+{
+    if (task.size() == 0)
+    {
+        cout << "No reminder to be deleted" << endl;
+        return;
+    }
+}
+
+void viewRem()
+{
+    
+}
+
+void updatedCalender()
+{
+
+}
+
+void otherOptions(calender **toProduce)
+{
+    options changes;
+    list<options> task;
+    int choose;
+
+    cout << "Press 1 - To add reminder" << endl;
+    cout << "Press 2 - To update reminder" << endl;
+    cout << "Press 3 - To delete any specific reminder" << endl;
+    cout << "Press 4 - To view all the reminders of a specific month" << endl;
+    cout << "Press 5 - To exit from the calender" << endl;
+
+    cout << endl;
+    for (;;)
+    {
+        cout << "Choose any of the following options: ";
+        cin >> choose;
+        if (choose == 5)
+        {
+            updatedCalender();
+            break;
+        }
+        else if (choose == 1)
+        {
+            addRem(task, changes);
+        }
+        else if (choose == 2)
+        {
+            updRem(task, changes);
+        }
+        else if (choose == 3)
+        {
+            delRem(task, changes);
+        }
+        // else
+        // {
+        //     viewRem();
+        // }
+    }
+
+    task.clear();
+}
+
 void freeUpMemory(calender **toProduce)
 {
     for (int m = 0; m < 12; ++m)
@@ -224,6 +294,7 @@ void freeUpMemory(calender **toProduce)
 
 int main()
 {
+    options *changes = new options;
     calender **toProduce = new calender *[12];
     int year;
     string firstDay;
@@ -242,6 +313,7 @@ int main()
     firstDay = toShort(firstDay);
     toCheckLeap(toProduce, year);
     miniDigitalCalender(toProduce, firstDay);
+    otherOptions(toProduce);
 
     freeUpMemory(toProduce);
 
