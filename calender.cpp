@@ -1,6 +1,7 @@
 #include <iostream>
 #include <list>
 #include <iterator>
+#include <string>
 using namespace std;
 
 struct options
@@ -207,20 +208,65 @@ void miniDigitalCalender(calender **toProduce, string firstDay)
     }
 }
 
-void addRem(list<options> task, options changes)
+void addRem(list<options> &task, options changes)
 {
+    cout << "Reminder Title: ";
+    getline(cin, changes.remTitle);
+    cout << "Reminder Description: ";
+    getline(cin, changes.remDescrip);
+    cout << "Date: ";
+    cin >> changes.theDate;
+    cout << "Month: ";
+    cin >> changes.theMonth;
+
+    task.push_back(changes);
 }
 
-void updRem(list<options> task, options changes)
+void updRem(list<options> &task, options changes)
 {
     if (task.size() == 0)
     {
         cout << "Please add a reminder first!" << endl;
         return;
     }
+
+    string titleCheck;
+    int dateCheck;
+    string monthCheck;
+
+    cout << "Provide the suitable informations to find the reminder" << endl;
+    cout << "Reminder Title: ";
+    getline(cin, titleCheck);
+    cout << "Date: ";
+    cin >> dateCheck;
+    cout << "Month: ";
+    cin >> monthCheck;
+    cout << endl;
+
+    for (list<options>::iterator it = task.begin(); it != task.end(); ++it)
+    {
+        cin.ignore();
+        if (it->remTitle == titleCheck && it->theDate == dateCheck && it->theMonth == monthCheck)
+        {
+            cout << "Provide informations to update it" << endl;
+            cout << "Reminder Title: ";
+            getline(cin, changes.remTitle);
+            it->remTitle = changes.remTitle;
+            cout << "Reminder Description: ";
+            getline(cin, changes.remDescrip);
+            it->remDescrip = changes.remDescrip;
+            cout << "Date: ";
+            cin >> changes.theDate;
+            it->theDate = changes.theDate;
+            cout << "Month: ";
+            cin >> changes.theMonth;
+            it->theMonth = changes.theMonth;
+            break;
+        }
+    }
 }
 
-void delRem(list<options> task, options changes)
+void delRem(list<options> &task, options changes)
 {
     if (task.size() == 0)
     {
@@ -231,12 +277,10 @@ void delRem(list<options> task, options changes)
 
 void viewRem()
 {
-    
 }
 
 void updatedCalender()
 {
-
 }
 
 void otherOptions(calender **toProduce)
@@ -256,6 +300,7 @@ void otherOptions(calender **toProduce)
     {
         cout << "Choose any of the following options: ";
         cin >> choose;
+        cin.ignore();
         if (choose == 5)
         {
             updatedCalender();
@@ -264,14 +309,17 @@ void otherOptions(calender **toProduce)
         else if (choose == 1)
         {
             addRem(task, changes);
+            cout << endl;
         }
         else if (choose == 2)
         {
             updRem(task, changes);
+            cout << endl;
         }
         else if (choose == 3)
         {
             delRem(task, changes);
+            cout << endl;
         }
         // else
         // {
@@ -319,3 +367,13 @@ int main()
 
     return 0;
 }
+
+// cout << task.size() << endl;
+// for (list<options>::iterator it = task.begin(); it != task.end(); ++it)
+// {
+//     cout << it->remTitle << endl;
+//     cout << it->remDescrip << endl;
+//     cout << it->theDate << endl;
+//     cout << it->theMonth << endl;
+//     cout << endl;
+// }
