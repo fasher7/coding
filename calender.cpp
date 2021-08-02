@@ -186,9 +186,15 @@ void miniDigitalCalender(calender **toProduce, string firstDay)
     string lastDay;
     int dayCheck;
 
+    calender toInputMonth;
+    for (int zz = 0; zz < 12; ++zz)
+    {
+        toProduce[zz][0].month[zz] = toInputMonth.month[zz];
+    }
+
     for (int x = 0; x < 12; ++x)
     {
-        cout << "-----------" << toProduce[x][0].month[x] << "-----------" << endl;
+        cout << "-----------" << toProduce[x][0].month[0] << "-----------" << endl;
         for (int y = 0; y < 7; ++y)
         {
             cout << toProduce[x][0].day[y] << " ";
@@ -396,10 +402,9 @@ void otherOptions(calender **toProduce, list<options> &task)
             cout << endl;
         }
     }
-
 }
 
-void freeUpMemory(calender **toProduce)
+void freeUpMemory(calender **toProduce, options *changes)
 {
     for (int m = 0; m < 12; ++m)
     {
@@ -407,6 +412,8 @@ void freeUpMemory(calender **toProduce)
     }
     delete[] toProduce;
     toProduce = nullptr;
+    delete[] changes;
+    changes = nullptr;
 }
 
 int main()
@@ -431,9 +438,10 @@ int main()
     firstDay = toShort(firstDay);
     toCheckLeap(toProduce, year);
     miniDigitalCalender(toProduce, firstDay);
+    cout << endl;
     otherOptions(toProduce, task);
 
-    freeUpMemory(toProduce);
+    freeUpMemory(toProduce, changes);
     task.clear();
 
     return 0;
