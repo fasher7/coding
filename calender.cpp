@@ -194,7 +194,7 @@ void miniDigitalCalender(calender **toProduce, string firstDay)
 
     for (int x = 0; x < 12; ++x)
     {
-        cout << "-----------" << toProduce[x][0].month[0] << "-----------" << endl;
+        cout << "-----------" << toProduce[x][0].month[x] << "-----------" << endl;
         for (int y = 0; y < 7; ++y)
         {
             cout << toProduce[x][0].day[y] << " ";
