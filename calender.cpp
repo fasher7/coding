@@ -14,7 +14,7 @@ struct options
 
 struct calender
 {
-    string month[12] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "Octobar", "November", "December"};
+    string month;
     string day[7] = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
     bool leapCheck;
 
@@ -25,9 +25,8 @@ struct calender
         {
             date[i] = i + 1;
         }
-        if (givenMonth == "January" || givenMonth == "March" || givenMonth == "May" || givenMonth == "July" || givenMonth == "August" || givenMonth == "Octobar" || givenMonth == "December")
+        if (givenMonth == "January" || givenMonth == "March" || givenMonth == "May" || givenMonth == "July" || givenMonth == "August" || givenMonth == "October" || givenMonth == "December")
         {
-
             for (int i = 0; i < 31; ++i)
             {
                 if (date[i] <= 9)
@@ -126,6 +125,22 @@ string toShort(string firstDay)
     return firstDay;
 }
 
+void toInputMonth(calender **toProduce)
+{
+    toProduce[0][0].month = "January";
+    toProduce[1][0].month = "February";
+    toProduce[2][0].month = "March";
+    toProduce[3][0].month = "April";
+    toProduce[4][0].month = "May";
+    toProduce[5][0].month = "June";
+    toProduce[6][0].month = "July";
+    toProduce[7][0].month = "August";
+    toProduce[8][0].month = "September";
+    toProduce[9][0].month = "October";
+    toProduce[10][0].month = "November";
+    toProduce[11][0].month = "December";
+}
+
 void toCheckLeap(calender **toProduce, int year)
 {
     if (year % 4 == 0 && year % 100 != 0)
@@ -186,15 +201,9 @@ void miniDigitalCalender(calender **toProduce, string firstDay)
     string lastDay;
     int dayCheck;
 
-    calender toInputMonth;
-    for (int zz = 0; zz < 12; ++zz)
-    {
-        toProduce[zz][0].month[zz] = toInputMonth.month[zz];
-    }
-
     for (int x = 0; x < 12; ++x)
     {
-        cout << "-----------" << toProduce[x][0].month[x] << "-----------" << endl;
+        cout << "-----------" << toProduce[x][0].month << "-----------" << endl;
         for (int y = 0; y < 7; ++y)
         {
             cout << toProduce[x][0].day[y] << " ";
@@ -209,7 +218,7 @@ void miniDigitalCalender(calender **toProduce, string firstDay)
             }
             cout << "    ";
         }
-        int newMonthDay = toProduce[x][0].inputDate(toProduce[x][0].month[x], dayCheck);
+        int newMonthDay = toProduce[x][0].inputDate(toProduce[x][0].month, dayCheck);
         firstDay = nextMonth(newMonthDay);
     }
 }
@@ -434,11 +443,11 @@ int main()
     cout << "Starting day of the year: ";
     cin >> firstDay;
     cout << endl;
-
+    
     firstDay = toShort(firstDay);
+    toInputMonth(toProduce);
     toCheckLeap(toProduce, year);
     miniDigitalCalender(toProduce, firstDay);
-    cout << endl;
     otherOptions(toProduce, task);
 
     freeUpMemory(toProduce, changes);
