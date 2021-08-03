@@ -364,11 +364,39 @@ void viewRem(list<options> task)
     }
 }
 
-void updatedCalender()
+void firstWordChecker(list<options> &task)
 {
+    string checkLower;
+    string temp2;
+    char changeUpper;
+
+    for (list<options>::iterator it = task.begin(); it != task.end(); ++it)
+    {
+        checkLower = it->theMonth;
+        changeUpper = checkLower[0];
+
+        if (changeUpper >= 'a' && changeUpper <= 'z')
+        {
+            changeUpper = changeUpper - 32;
+            temp2 = temp2 + changeUpper;
+            for (int a = 1; a < checkLower.size(); ++a)
+            {
+                temp2 = temp2 + checkLower[a];
+            }
+            it->theMonth = temp2;
+            temp2 = "";
+        }
+    }
 }
 
-void otherOptions(calender **toProduce, list<options> &task)
+void updatedCalender(calender **toProduce, list<options> &task, string firstDay)
+{
+    firstWordChecker(task);
+
+    
+}
+
+void otherOptions(calender **toProduce, list<options> &task, string firstDay)
 {
     options changes;
     int choose;
@@ -387,7 +415,7 @@ void otherOptions(calender **toProduce, list<options> &task)
         cin.ignore();
         if (choose == 5)
         {
-            updatedCalender();
+            updatedCalender(toProduce, task, firstDay);
             break;
         }
         else if (choose == 1)
@@ -413,7 +441,7 @@ void otherOptions(calender **toProduce, list<options> &task)
     }
 }
 
-void freeUpMemory(calender **toProduce, options *changes)
+void freeUpMemory(calender **toProduce, options *&changes)
 {
     for (int m = 0; m < 12; ++m)
     {
@@ -443,12 +471,12 @@ int main()
     cout << "Starting day of the year: ";
     cin >> firstDay;
     cout << endl;
-    
+
     firstDay = toShort(firstDay);
     toInputMonth(toProduce);
     toCheckLeap(toProduce, year);
     miniDigitalCalender(toProduce, firstDay);
-    otherOptions(toProduce, task);
+    otherOptions(toProduce, task, firstDay);
 
     freeUpMemory(toProduce, changes);
     task.clear();
