@@ -141,6 +141,7 @@ int updatedMarkedCalender(string monthDates, int dayCheck, calender **toProduce,
                 ++count;
             }
         }
+
         int accuray[count];
         for (int x = 0; x < count; ++x)
         {
@@ -148,6 +149,7 @@ int updatedMarkedCalender(string monthDates, int dayCheck, calender **toProduce,
         }
         arrSize = sizeof(accuray) / sizeof(accuray[0]);
         sort(accuray, accuray + arrSize);
+
         for (int i = 0; i < 31; ++i)
         {
             if (accuray[countcounter] == date2[i] && monthFind == true)
@@ -199,6 +201,7 @@ int updatedMarkedCalender(string monthDates, int dayCheck, calender **toProduce,
                 ++count;
             }
         }
+
         int accuray[count];
         for (int x = 0; x < count; ++x)
         {
@@ -206,6 +209,7 @@ int updatedMarkedCalender(string monthDates, int dayCheck, calender **toProduce,
         }
         arrSize = sizeof(accuray) / sizeof(accuray[0]);
         sort(accuray, accuray + arrSize);
+
         for (int i = 0; i < 30; ++i)
         {
             if (accuray[countcounter] == date2[i] && monthFind == true)
@@ -248,24 +252,26 @@ int updatedMarkedCalender(string monthDates, int dayCheck, calender **toProduce,
 
     else if (monthDates == "February")
     {
+        for (list<options>::iterator it = task.begin(); it != task.end(); ++it)
+        {
+            if (it->theMonth == monthDates)
+            {
+                monthFind = true;
+                anotherREM[count] = it->theDate;
+                ++count;
+            }
+        }
+        
+        int accuray[count];
+        for (int x = 0; x < count; ++x)
+        {
+            accuray[x] = anotherREM[x];
+        }
+        arrSize = sizeof(accuray) / sizeof(accuray[0]);
+        sort(accuray, accuray + arrSize);
+        
         if (isThere == true)
         {
-            for (list<options>::iterator it = task.begin(); it != task.end(); ++it)
-            {
-                if (it->theMonth == monthDates)
-                {
-                    monthFind = true;
-                    anotherREM[count] = it->theDate;
-                    ++count;
-                }
-            }
-            int accuray[count];
-            for (int x = 0; x < count; ++x)
-            {
-                accuray[x] = anotherREM[x];
-            }
-            arrSize = sizeof(accuray) / sizeof(accuray[0]);
-            sort(accuray, accuray + arrSize);
             for (int i = 0; i < 29; ++i)
             {
                 if (accuray[countcounter] == date2[i] && monthFind == true)
@@ -307,22 +313,6 @@ int updatedMarkedCalender(string monthDates, int dayCheck, calender **toProduce,
         }
         else
         {
-            for (list<options>::iterator it = task.begin(); it != task.end(); ++it)
-            {
-                if (it->theMonth == monthDates)
-                {
-                    monthFind = true;
-                    anotherREM[count] = it->theDate;
-                    ++count;
-                }
-            }
-            int accuray[count];
-            for (int x = 0; x < count; ++x)
-            {
-                accuray[x] = anotherREM[x];
-            }
-            arrSize = sizeof(accuray) / sizeof(accuray[0]);
-            sort(accuray, accuray + arrSize);
             for (int i = 0; i < 28; ++i)
             {
                 if (accuray[countcounter] == date2[i] && monthFind == true)
