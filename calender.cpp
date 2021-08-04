@@ -2,6 +2,7 @@
 #include <list>
 #include <iterator>
 #include <string>
+#include <algorithm>
 using namespace std;
 
 struct options
@@ -16,6 +17,7 @@ struct calender
 {
     string month;
     string day[7] = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
+    int date[31];
     bool leapCheck;
 
     int inputDate(string givenMonth, int dayCheck)
@@ -69,7 +71,6 @@ struct calender
         {
             if (leapCheck == true)
             {
-
                 for (int i = 0; i < 29; ++i)
                 {
                     if (date[i] <= 9)
@@ -113,6 +114,259 @@ struct calender
         return dayCheck;
     }
 };
+
+int updatedMarkedCalender(string monthDates, int dayCheck, calender **toProduce, list<options> &task)
+{
+    bool isThere = toProduce[1][0].leapCheck;
+    bool monthFind = false;
+    int date2[31];
+    int anotherREM[31];
+    int arrSize;
+    int count = 0;
+    int countcounter = 0;
+
+    for (int i = 0; i < 31; ++i)
+    {
+        date2[i] = i + 1;
+    }
+
+    if (monthDates == "January" || monthDates == "March" || monthDates == "May" || monthDates == "July" || monthDates == "August" || monthDates == "October" || monthDates == "December")
+    {
+        for (list<options>::iterator it = task.begin(); it != task.end(); ++it)
+        {
+            if (it->theMonth == monthDates)
+            {
+                monthFind = true;
+                anotherREM[count] = it->theDate;
+                ++count;
+            }
+        }
+        int accuray[count];
+        for (int x = 0; x < count; ++x)
+        {
+            accuray[x] = anotherREM[x];
+        }
+        arrSize = sizeof(accuray) / sizeof(accuray[0]);
+        sort(accuray, accuray + arrSize);
+        for (int i = 0; i < 31; ++i)
+        {
+            if (accuray[countcounter] == date2[i] && monthFind == true)
+            {
+                ++countcounter;
+                if (date2[i] <= 9)
+                {
+                    cout << "*" << date2[i] << "  ";
+                }
+                else if (date2[i] > 9)
+                {
+                    cout << "*" << date2[i] << "  ";
+                }
+                ++dayCheck;
+                if (dayCheck == 7)
+                {
+                    dayCheck = 0;
+                    cout << endl;
+                }
+            }
+            else
+            {
+                if (date2[i] <= 9)
+                {
+                    cout << " " << date2[i] << "  ";
+                }
+                else if (date2[i] > 9)
+                {
+                    cout << date2[i] << "  ";
+                }
+                ++dayCheck;
+                if (dayCheck == 7)
+                {
+                    dayCheck = 0;
+                    cout << endl;
+                }
+            }
+        }
+    }
+
+    else if (monthDates == "April" || monthDates == "June" || monthDates == "September" || monthDates == "November")
+    {
+        for (list<options>::iterator it = task.begin(); it != task.end(); ++it)
+        {
+            if (it->theMonth == monthDates)
+            {
+                monthFind = true;
+                anotherREM[count] = it->theDate;
+                ++count;
+            }
+        }
+        int accuray[count];
+        for (int x = 0; x < count; ++x)
+        {
+            accuray[x] = anotherREM[x];
+        }
+        arrSize = sizeof(accuray) / sizeof(accuray[0]);
+        sort(accuray, accuray + arrSize);
+        for (int i = 0; i < 30; ++i)
+        {
+            if (accuray[countcounter] == date2[i] && monthFind == true)
+            {
+                ++countcounter;
+                if (date2[i] <= 9)
+                {
+                    cout << "*" << date2[i] << "  ";
+                }
+                else if (date2[i] > 9)
+                {
+                    cout << "*" << date2[i] << "  ";
+                }
+                ++dayCheck;
+                if (dayCheck == 7)
+                {
+                    dayCheck = 0;
+                    cout << endl;
+                }
+            }
+            else
+            {
+                if (date2[i] <= 9)
+                {
+                    cout << " " << date2[i] << "  ";
+                }
+                else if (date2[i] > 9)
+                {
+                    cout << date2[i] << "  ";
+                }
+                ++dayCheck;
+                if (dayCheck == 7)
+                {
+                    dayCheck = 0;
+                    cout << endl;
+                }
+            }
+        }
+    }
+
+    else if (monthDates == "February")
+    {
+        if (isThere == true)
+        {
+            for (list<options>::iterator it = task.begin(); it != task.end(); ++it)
+            {
+                if (it->theMonth == monthDates)
+                {
+                    monthFind = true;
+                    anotherREM[count] = it->theDate;
+                    ++count;
+                }
+            }
+            int accuray[count];
+            for (int x = 0; x < count; ++x)
+            {
+                accuray[x] = anotherREM[x];
+            }
+            arrSize = sizeof(accuray) / sizeof(accuray[0]);
+            sort(accuray, accuray + arrSize);
+            for (int i = 0; i < 29; ++i)
+            {
+                if (accuray[countcounter] == date2[i] && monthFind == true)
+                {
+                    ++countcounter;
+                    if (date2[i] <= 9)
+                    {
+                        cout << "*" << date2[i] << "  ";
+                    }
+                    else if (date2[i] > 9)
+                    {
+                        cout << "*" << date2[i] << "  ";
+                    }
+                    ++dayCheck;
+                    if (dayCheck == 7)
+                    {
+                        dayCheck = 0;
+                        cout << endl;
+                    }
+                }
+                else
+                {
+                    if (date2[i] <= 9)
+                    {
+                        cout << " " << date2[i] << "  ";
+                    }
+                    else if (date2[i] > 9)
+                    {
+                        cout << date2[i] << "  ";
+                    }
+                    ++dayCheck;
+                    if (dayCheck == 7)
+                    {
+                        dayCheck = 0;
+                        cout << endl;
+                    }
+                }
+            }
+        }
+        else
+        {
+            for (list<options>::iterator it = task.begin(); it != task.end(); ++it)
+            {
+                if (it->theMonth == monthDates)
+                {
+                    monthFind = true;
+                    anotherREM[count] = it->theDate;
+                    ++count;
+                }
+            }
+            int accuray[count];
+            for (int x = 0; x < count; ++x)
+            {
+                accuray[x] = anotherREM[x];
+            }
+            arrSize = sizeof(accuray) / sizeof(accuray[0]);
+            sort(accuray, accuray + arrSize);
+            for (int i = 0; i < 28; ++i)
+            {
+                if (accuray[countcounter] == date2[i] && monthFind == true)
+                {
+                    ++countcounter;
+                    if (date2[i] <= 9)
+                    {
+                        cout << "*" << date2[i] << "  ";
+                    }
+                    else if (date2[i] > 9)
+                    {
+                        cout << "*" << date2[i] << "  ";
+                    }
+                    ++dayCheck;
+                    if (dayCheck == 7)
+                    {
+                        dayCheck = 0;
+                        cout << endl;
+                    }
+                }
+                else
+                {
+                    if (date2[i] <= 9)
+                    {
+                        cout << " " << date2[i] << "  ";
+                    }
+                    else if (date2[i] > 9)
+                    {
+                        cout << date2[i] << "  ";
+                    }
+                    ++dayCheck;
+                    if (dayCheck == 7)
+                    {
+                        dayCheck = 0;
+                        cout << endl;
+                    }
+                }
+            }
+        }
+    }
+
+    cout << endl;
+    return dayCheck;
+}
 
 string toShort(string firstDay)
 {
@@ -392,8 +646,29 @@ void firstWordChecker(list<options> &task)
 void updatedCalender(calender **toProduce, list<options> &task, string firstDay)
 {
     firstWordChecker(task);
+    string lastDay;
+    int dayCheck;
 
-    
+    for (int x = 0; x < 12; ++x)
+    {
+        cout << "-----------" << toProduce[x][0].month << "-----------" << endl;
+        for (int y = 0; y < 7; ++y)
+        {
+            cout << toProduce[x][0].day[y] << " ";
+        }
+        cout << endl;
+        for (int z = 0; z < 7; ++z)
+        {
+            if (toProduce[x][0].day[z] == firstDay)
+            {
+                dayCheck = z;
+                break;
+            }
+            cout << "    ";
+        }
+        int newMonthDay = updatedMarkedCalender(toProduce[x][0].month, dayCheck, toProduce, task);
+        firstDay = nextMonth(newMonthDay);
+    }
 }
 
 void otherOptions(calender **toProduce, list<options> &task, string firstDay)
