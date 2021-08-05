@@ -33,11 +33,11 @@ struct calender
             {
                 if (date[i] <= 9)
                 {
-                    cout << " " << date[i] << "  ";
+                    cout << "  " << date[i] << " ";
                 }
                 else if (date[i] > 9)
                 {
-                    cout << date[i] << "  ";
+                    cout << " " << date[i] << " ";
                 }
                 ++dayCheck;
                 if (dayCheck == 7)
@@ -53,11 +53,11 @@ struct calender
             {
                 if (date[i] <= 9)
                 {
-                    cout << " " << date[i] << "  ";
+                    cout << "  " << date[i] << " ";
                 }
                 else if (date[i] > 9)
                 {
-                    cout << date[i] << "  ";
+                    cout << " " << date[i] << " ";
                 }
                 ++dayCheck;
                 if (dayCheck == 7)
@@ -75,11 +75,11 @@ struct calender
                 {
                     if (date[i] <= 9)
                     {
-                        cout << " " << date[i] << "  ";
+                        cout << "  " << date[i] << " ";
                     }
                     else if (date[i] > 9)
                     {
-                        cout << date[i] << "  ";
+                        cout << " " << date[i] << " ";
                     }
                     ++dayCheck;
                     if (dayCheck == 7)
@@ -95,11 +95,11 @@ struct calender
                 {
                     if (date[i] <= 9)
                     {
-                        cout << " " << date[i] << "  ";
+                        cout << "  " << date[i] << " ";
                     }
                     else if (date[i] > 9)
                     {
-                        cout << date[i] << "  ";
+                        cout << " " << date[i] << " ";
                     }
                     ++dayCheck;
                     if (dayCheck == 7)
@@ -157,11 +157,11 @@ int updatedMarkedCalender(string monthDates, int dayCheck, calender **toProduce,
                 ++countcounter;
                 if (date2[i] <= 9)
                 {
-                    cout << "*" << date2[i] << "  ";
+                    cout << " *" << date2[i] << " ";
                 }
                 else if (date2[i] > 9)
                 {
-                    cout << "*" << date2[i] << "  ";
+                    cout << "*" << date2[i] << " ";
                 }
                 ++dayCheck;
                 if (dayCheck == 7)
@@ -174,11 +174,11 @@ int updatedMarkedCalender(string monthDates, int dayCheck, calender **toProduce,
             {
                 if (date2[i] <= 9)
                 {
-                    cout << " " << date2[i] << "  ";
+                    cout << "  " << date2[i] << " ";
                 }
                 else if (date2[i] > 9)
                 {
-                    cout << date2[i] << "  ";
+                    cout << " " << date2[i] << " ";
                 }
                 ++dayCheck;
                 if (dayCheck == 7)
@@ -217,11 +217,11 @@ int updatedMarkedCalender(string monthDates, int dayCheck, calender **toProduce,
                 ++countcounter;
                 if (date2[i] <= 9)
                 {
-                    cout << "*" << date2[i] << "  ";
+                    cout << " *" << date2[i] << " ";
                 }
                 else if (date2[i] > 9)
                 {
-                    cout << "*" << date2[i] << "  ";
+                    cout << "*" << date2[i] << " ";
                 }
                 ++dayCheck;
                 if (dayCheck == 7)
@@ -234,11 +234,11 @@ int updatedMarkedCalender(string monthDates, int dayCheck, calender **toProduce,
             {
                 if (date2[i] <= 9)
                 {
-                    cout << " " << date2[i] << "  ";
+                    cout << "  " << date2[i] << " ";
                 }
                 else if (date2[i] > 9)
                 {
-                    cout << date2[i] << "  ";
+                    cout << " " << date2[i] << " ";
                 }
                 ++dayCheck;
                 if (dayCheck == 7)
@@ -250,7 +250,7 @@ int updatedMarkedCalender(string monthDates, int dayCheck, calender **toProduce,
         }
     }
 
-    else if (monthDates == "February")
+    else
     {
         for (list<options>::iterator it = task.begin(); it != task.end(); ++it)
         {
@@ -261,7 +261,7 @@ int updatedMarkedCalender(string monthDates, int dayCheck, calender **toProduce,
                 ++count;
             }
         }
-        
+
         int accuray[count];
         for (int x = 0; x < count; ++x)
         {
@@ -269,7 +269,7 @@ int updatedMarkedCalender(string monthDates, int dayCheck, calender **toProduce,
         }
         arrSize = sizeof(accuray) / sizeof(accuray[0]);
         sort(accuray, accuray + arrSize);
-        
+
         if (isThere == true)
         {
             for (int i = 0; i < 29; ++i)
@@ -279,11 +279,11 @@ int updatedMarkedCalender(string monthDates, int dayCheck, calender **toProduce,
                     ++countcounter;
                     if (date2[i] <= 9)
                     {
-                        cout << "*" << date2[i] << "  ";
+                        cout << " *" << date2[i] << " ";
                     }
                     else if (date2[i] > 9)
                     {
-                        cout << "*" << date2[i] << "  ";
+                        cout << "*" << date2[i] << " ";
                     }
                     ++dayCheck;
                     if (dayCheck == 7)
@@ -296,11 +296,11 @@ int updatedMarkedCalender(string monthDates, int dayCheck, calender **toProduce,
                 {
                     if (date2[i] <= 9)
                     {
-                        cout << " " << date2[i] << "  ";
+                        cout << "  " << date2[i] << " ";
                     }
                     else if (date2[i] > 9)
                     {
-                        cout << date2[i] << "  ";
+                        cout << " " << date2[i] << " ";
                     }
                     ++dayCheck;
                     if (dayCheck == 7)
@@ -320,11 +320,11 @@ int updatedMarkedCalender(string monthDates, int dayCheck, calender **toProduce,
                     ++countcounter;
                     if (date2[i] <= 9)
                     {
-                        cout << "*" << date2[i] << "  ";
+                        cout << " *" << date2[i] << " ";
                     }
                     else if (date2[i] > 9)
                     {
-                        cout << "*" << date2[i] << "  ";
+                        cout << "*" << date2[i] << " ";
                     }
                     ++dayCheck;
                     if (dayCheck == 7)
@@ -337,11 +337,11 @@ int updatedMarkedCalender(string monthDates, int dayCheck, calender **toProduce,
                 {
                     if (date2[i] <= 9)
                     {
-                        cout << " " << date2[i] << "  ";
+                        cout << "  " << date2[i] << " ";
                     }
                     else if (date2[i] > 9)
                     {
-                        cout << date2[i] << "  ";
+                        cout << " " << date2[i] << " ";
                     }
                     ++dayCheck;
                     if (dayCheck == 7)
@@ -670,7 +670,7 @@ void otherOptions(calender **toProduce, list<options> &task, string firstDay)
     cout << "Press 2 - To update reminder" << endl;
     cout << "Press 3 - To delete any specific reminder" << endl;
     cout << "Press 4 - To view all the reminders of a specific month" << endl;
-    cout << "Press 5 - To exit from the calender" << endl;
+    cout << "Press 0 - To exit from the calender & view the updated calender" << endl;
 
     cout << endl;
     for (;;)
@@ -678,7 +678,7 @@ void otherOptions(calender **toProduce, list<options> &task, string firstDay)
         cout << "Choose any of the following options: ";
         cin >> choose;
         cin.ignore();
-        if (choose == 5)
+        if (choose == 0)
         {
             updatedCalender(toProduce, task, firstDay);
             break;
@@ -742,6 +742,7 @@ int main()
     toCheckLeap(toProduce, year);
     miniDigitalCalender(toProduce, firstDay);
     otherOptions(toProduce, task, firstDay);
+    cout << "have a LOVELY day!" << endl;
 
     freeUpMemory(toProduce, changes);
     task.clear();
