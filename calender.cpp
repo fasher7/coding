@@ -467,147 +467,6 @@ void miniDigitalCalender(calender **toProduce, string firstDay)
     }
 }
 
-void addRem(list<options> &task, options changes)
-{
-    cout << "Reminder Title: ";
-    getline(cin, changes.remTitle);
-    cout << "Reminder Description: ";
-    getline(cin, changes.remDescrip);
-    cout << "Date: ";
-    cin >> changes.theDate;
-    cout << "Month: ";
-    cin >> changes.theMonth;
-
-    task.push_back(changes);
-    cout << "***REMINDER ADDED SUCCESSFULLY***" << endl;
-}
-
-void updRem(list<options> &task, options changes)
-{
-    if (task.size() == 0)
-    {
-        cout << "Please add a reminder first!" << endl;
-        return;
-    }
-
-    string titleCheck;
-    int dateCheck;
-    string monthCheck;
-    int countUpd = 0;
-
-    cout << "Provide the suitable informations to find the reminder." << endl;
-    cout << "Reminder Title: ";
-    getline(cin, titleCheck);
-    cout << "Date: ";
-    cin >> dateCheck;
-    cout << "Month: ";
-    cin >> monthCheck;
-    cout << endl;
-
-    cin.ignore();
-    for (list<options>::iterator it = task.begin(); it != task.end(); ++it)
-    {
-        if (it->remTitle == titleCheck && it->theDate == dateCheck && it->theMonth == monthCheck)
-        {
-            cout << "Provide informations to update it." << endl;
-            cout << "Reminder Title: ";
-            getline(cin, changes.remTitle);
-            it->remTitle = changes.remTitle;
-            cout << "Reminder Description: ";
-            getline(cin, changes.remDescrip);
-            it->remDescrip = changes.remDescrip;
-            cout << "Date: ";
-            cin >> changes.theDate;
-            it->theDate = changes.theDate;
-            cout << "Month: ";
-            cin >> changes.theMonth;
-            it->theMonth = changes.theMonth;
-            ++countUpd;
-            cout << "***REMINDER UPDATED***" << endl;
-            break;
-        }
-    }
-
-    if (countUpd == 0)
-    {
-        cout << "***REMINDER WAS NOT FOUND***" << endl;
-    }
-}
-
-void delRem(list<options> &task)
-{
-    if (task.size() == 0)
-    {
-        cout << "No reminder to be deleted." << endl;
-        return;
-    }
-
-    string titleDel;
-    int dateDel;
-    string monthDel;
-    int countDel = 0;
-
-    cout << "Provide the suitable informations to delete the reminder." << endl;
-    cout << "Reminder Title: ";
-    getline(cin, titleDel);
-    cout << "Date: ";
-    cin >> dateDel;
-    cout << "Month: ";
-    cin >> monthDel;
-    cout << endl;
-
-    cin.ignore();
-    for (list<options>::iterator it = task.begin(); it != task.end(); ++it)
-    {
-        if (it->remTitle == titleDel && it->theDate == dateDel && it->theMonth == monthDel)
-        {
-            task.erase(it);
-            ++countDel;
-            cout << "***REMINDER DELETED***" << endl;
-            break;
-        }
-    }
-
-    if (countDel == 0)
-    {
-        cout << "***REMINDER WAS NOT FOUND***" << endl;
-    }
-}
-
-void viewRem(list<options> task)
-{
-    if (task.size() == 0)
-    {
-        cout << "Please add a reminder first!" << endl;
-        return;
-    }
-
-    string remMonth;
-    cout << "Which month's reminder? ";
-    cin >> remMonth;
-    int countReminder = 1;
-    cout << endl;
-
-    cin.ignore();
-    for (list<options>::iterator it = task.begin(); it != task.end(); ++it)
-    {
-        if (it->theMonth == remMonth)
-        {
-            cout << "Reminder #" << countReminder << endl;
-            cout << "Reminder Title: " << it->remTitle << endl;
-            cout << "Reminder Description: " << it->remDescrip << endl;
-            cout << "Reminder Date: " << it->theDate << endl;
-            cout << "Reminder Month: " << it->theMonth << endl;
-            ++countReminder;
-        }
-    }
-
-    if (countReminder == 1)
-    {
-        cout << "No reminder found in " << remMonth << "." << endl;
-    }
-}
-
 void firstWordChecker(list<options> &task)
 {
     string checkLower;
@@ -661,6 +520,154 @@ void updatedCalender(calender **toProduce, list<options> &task, string firstDay)
     }
 }
 
+void addRem(list<options> &task, options changes)
+{
+    cout << "Reminder Title: ";
+    getline(cin, changes.remTitle);
+    cout << "Reminder Description: ";
+    getline(cin, changes.remDescrip);
+    cout << "Date: ";
+    cin >> changes.theDate;
+    cout << "Month: ";
+    cin >> changes.theMonth;
+
+    task.push_back(changes);
+    cout << "***REMINDER ADDED SUCCESSFULLY***" << endl;
+}
+
+int updRem(list<options> &task, options changes)
+{
+    if (task.size() == 0)
+    {
+        cout << "Please add a reminder first!" << endl;
+        return 0;
+    }
+
+    string titleCheck;
+    int dateCheck;
+    string monthCheck;
+    int countUpd = 0;
+
+    cout << "Provide the suitable informations to find the reminder." << endl;
+    cout << "Reminder Title: ";
+    getline(cin, titleCheck);
+    cout << "Date: ";
+    cin >> dateCheck;
+    cout << "Month: ";
+    cin >> monthCheck;
+    cout << endl;
+
+    cin.ignore();
+    for (list<options>::iterator it = task.begin(); it != task.end(); ++it)
+    {
+        if (it->remTitle == titleCheck && it->theDate == dateCheck && it->theMonth == monthCheck)
+        {
+            cout << "Provide informations to update it." << endl;
+
+            cout << "Reminder Title: ";
+            getline(cin, changes.remTitle);
+            it->remTitle = changes.remTitle;
+
+            cout << "Reminder Description: ";
+            getline(cin, changes.remDescrip);
+            it->remDescrip = changes.remDescrip;
+
+            cout << "Date: ";
+            cin >> changes.theDate;
+            it->theDate = changes.theDate;
+
+            cout << "Month: ";
+            cin >> changes.theMonth;
+            it->theMonth = changes.theMonth;
+
+            ++countUpd;
+            cout << "***REMINDER UPDATED***" << endl;
+            break;
+        }
+    }
+
+    if (countUpd == 0)
+    {
+        cout << "***REMINDER WAS NOT FOUND***" << endl;
+    }
+    return countUpd;
+}
+
+void delRem(list<options> &task, calender **toProduce, string firstDay)
+{
+    if (task.size() == 0)
+    {
+        cout << "No reminder to be deleted." << endl;
+        return;
+    }
+
+    string titleDel;
+    int dateDel;
+    string monthDel;
+    int countDel = 0;
+
+    cout << "Provide the suitable informations to delete the reminder." << endl;
+    cout << "Reminder Title: ";
+    getline(cin, titleDel);
+    cout << "Date: ";
+    cin >> dateDel;
+    cout << "Month: ";
+    cin >> monthDel;
+    cout << endl;
+
+    cin.ignore();
+    for (list<options>::iterator it = task.begin(); it != task.end(); ++it)
+    {
+        if (it->remTitle == titleDel && it->theDate == dateDel && it->theMonth == monthDel)
+        {
+            task.erase(it);
+            ++countDel;
+            cout << "***REMINDER DELETED***" << endl;
+            break;
+        }
+    }
+    updatedCalender(toProduce, task, firstDay);
+
+    if (countDel == 0)
+    {
+        cout << "***REMINDER WAS NOT FOUND***" << endl;
+    }
+}
+
+void viewRem(list<options> task)
+{
+    if (task.size() == 0)
+    {
+        cout << "Please add a reminder first!" << endl;
+        return;
+    }
+
+    string remMonth;
+    cout << "Which month's reminder? ";
+    cin >> remMonth;
+    int countReminder = 1;
+    cout << endl;
+
+    cin.ignore();
+    for (list<options>::iterator it = task.begin(); it != task.end(); ++it)
+    {
+        if (it->theMonth == remMonth)
+        {
+            cout << "Reminder #" << countReminder << endl;
+            cout << "Reminder Title: " << it->remTitle << endl;
+            cout << "Reminder Description: " << it->remDescrip << endl;
+            cout << "Reminder Date: " << it->theDate << endl;
+            cout << "Reminder Month: " << it->theMonth << endl;
+            ++countReminder;
+        }
+    }
+
+    if (countReminder == 1)
+    {
+        cout << "No reminder found in " << remMonth << "." << endl;
+    }
+}
+
 void otherOptions(calender **toProduce, list<options> &task, string firstDay)
 {
     options changes;
@@ -686,16 +693,21 @@ void otherOptions(calender **toProduce, list<options> &task, string firstDay)
         else if (choose == 1)
         {
             addRem(task, changes);
+            updatedCalender(toProduce, task, firstDay);
             cout << endl;
         }
         else if (choose == 2)
         {
-            updRem(task, changes);
+            int countupd = updRem(task, changes);
+            if (countupd != 0)
+            {
+                updatedCalender(toProduce, task, firstDay);
+            }
             cout << endl;
         }
         else if (choose == 3)
         {
-            delRem(task);
+            delRem(task, toProduce, firstDay);
             cout << endl;
         }
         else
@@ -706,7 +718,7 @@ void otherOptions(calender **toProduce, list<options> &task, string firstDay)
     }
 }
 
-void freeUpMemory(calender **toProduce, options *&changes)
+void freeUpMemory(calender **toProduce)
 {
     for (int m = 0; m < 12; ++m)
     {
@@ -714,8 +726,6 @@ void freeUpMemory(calender **toProduce, options *&changes)
     }
     delete[] toProduce;
     toProduce = nullptr;
-    delete[] changes;
-    changes = nullptr;
 }
 
 int main()
@@ -744,7 +754,7 @@ int main()
     otherOptions(toProduce, task, firstDay);
     cout << "have a LOVELY day!" << endl;
 
-    freeUpMemory(toProduce, changes);
+    freeUpMemory(toProduce);
     task.clear();
 
     return 0;
