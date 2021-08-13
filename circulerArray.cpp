@@ -1,3 +1,5 @@
+    while (RC != 0)
+    {
         temp = numArr[num - 1];
         temp3 = numArr[0];
         for (int y = 1; y < num; ++y)
@@ -15,5 +17,6 @@
         }
         numArr[0] = temp;
         --RC;
+    }
 
 // this can be used to change 1 2 3 4 -> 4 1 2 3 -> 3 4 1 2 and so on
